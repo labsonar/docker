@@ -1,0 +1,12 @@
+FROM labsonar/pytorch
+
+RUN apt-get update
+
+# Install oases - software for underwater acoustic channel modeling
+RUN wget -O oases.tar.gz "https://drive.google.com/uc?export=download&id=1eMH4ENfUVcI9y2mvxyBDN5ed_GPGNUqL" && \
+    tar -zxvf oases.tar.gz && \
+    cd oases && \
+    sh root_install.sh && \
+    cd .. && \
+    rm oases.tar.gz && \
+    rm -rf ./oases
