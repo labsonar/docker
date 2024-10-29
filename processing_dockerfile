@@ -1,9 +1,9 @@
-ARG CUDA_VER=11.2.2
-ARG UBUNTU_VER=20.04
+ARG CUDA_VER=12.2.2
+ARG UBUNTU_VER=22.04
 
 FROM nvidia/cuda:${CUDA_VER}-cudnn8-runtime-ubuntu${UBUNTU_VER}
 
-ARG PYTHON_VER=3.9
+ARG PYTHON_VER=3.10
 ARG DEBIAN_FRONTEND="noninteractive"
 
 # Install packages on the system
@@ -41,4 +41,5 @@ RUN pip install --upgrade --no-cache-dir pip setuptools wheel && \
     seaborn \
     tabulate \
     tqdm \
-    tikzplotlib
+    tikzplotlib \
+    librosa
