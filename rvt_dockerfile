@@ -1,0 +1,8 @@
+FROM labsonar/processing
+
+# Install pytorch
+RUN pip install --upgrade --no-cache-dir streamlit\
+    plotly \
+    streamlit_sortables \
+    torchtext \
+    kaleido
