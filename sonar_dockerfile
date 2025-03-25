@@ -1,0 +1,12 @@
+FROM labsonar/synthesis
+
+# Install pytorch
+RUN pip install --upgrade --no-cache-dir streamlit\
+    plotly \
+    streamlit_sortables \
+    torchtext \
+    kaleido
+
+#docker build -f sonar_dockerfile -t labsonar/sonar .
+#docker create -it --gpus all -v $HOME:$HOME -p 7080-7100:7080-7100 --name sonar labsonar/sonar
+#docker push labsonar/sonar
