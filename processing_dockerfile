@@ -6,7 +6,6 @@ FROM nvidia/cuda:${CUDA_VER}-cudnn8-runtime-ubuntu${UBUNTU_VER}
 ARG PYTHON_VER=3.10
 ARG DEBIAN_FRONTEND="noninteractive"
 
-# Install packages on the system
 RUN apt-get update && apt-get install -y --no-install-recommends \
     nvidia-container-toolkit-base \
     bash \
@@ -23,16 +22,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     tmux \
     unzip \
     vim \
-    wget \ 
+    wget \
     zip
 
-# Install packages inside the new environment
 RUN pip install --upgrade --no-cache-dir pip setuptools wheel && \
     pip install --upgrade --no-cache-dir \
     ipywidgets \
     jupyterlab \
-    matplotlib \
     notebook \
+    matplotlib==3.7.5 \
+    tikzplotlib==0.10.1 \
     numpy \
     pandas \
     scipy \
@@ -41,5 +40,16 @@ RUN pip install --upgrade --no-cache-dir pip setuptools wheel && \
     seaborn \
     tabulate \
     tqdm \
-    tikzplotlib \
-    librosa
+    librosa \
+    arch \
+    sympy
+
+ARG MY_USER
+ARG MY_UID
+ARG MY_GID
+
+RUN if [ -n "${MY_USER}" ]; then \
+        groupadd -g ${MY_GID} ${MY_USER} && \
+        useradd -m -u ${MY_UID} -g ${MY_GID} -s /bin/bash ${MY_USER} && \
+        echo "${MY_USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers ; \
+    fi

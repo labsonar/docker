@@ -1,10 +1,15 @@
 FROM labsonar/processing
 
-# Install pytorch
-RUN pip install --upgrade --no-cache-dir torch\
+USER root
+
+RUN pip install --upgrade --no-cache-dir torch \
     torchvision \
     torchaudio \
     torchtext \
-    torchserve --extra-index-url https://download.pytorch.org/whl/cu118 && \
-    pip install --upgrade --no-cache-dir lightning && \
+    torchserve --extra-index-url https://download.pytorch.org/whl/cu118
+
+RUN pip install --upgrade --no-cache-dir lightning && \
     pip cache purge
+
+ARG MY_USER
+USER ${MY_USER:-root}

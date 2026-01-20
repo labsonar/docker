@@ -1,12 +1,25 @@
 FROM labsonar/pytorch
 
-RUN apt-get update
+USER root
 
-# Install oases - software for underwater acoustic channel modeling
-RUN wget -O oases.tar.gz "https://drive.google.com/uc?export=download&id=1eMH4ENfUVcI9y2mvxyBDN5ed_GPGNUqL" && \
-    tar -zxvf oases.tar.gz && \
+RUN wget -L -O oases.tar.gz "https://github.com/labsonar/docker/releases/download/channel_modelling/oases.tar.gz"
+
+RUN tar -zxvf oases.tar.gz && \
     cd oases && \
-    sh root_install.sh && \
+    ./root_install && \
     cd .. && \
     rm oases.tar.gz && \
     rm -rf ./oases
+
+
+RUN wget -L -O traceo.tar.gz "https://github.com/labsonar/docker/releases/download/traceo/traceo.tar.gz"
+
+RUN tar -zxvf traceo.tar.gz && \
+    cd traceo && \
+    ./root_install && \
+    cd .. && \
+    rm traceo.tar.gz && \
+    rm -rf ./traceo
+
+ARG MY_USER
+USER ${MY_USER:-root}
