@@ -25,24 +25,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
     zip
 
+COPY requirements/base.txt /tmp/requirements.txt
+
 RUN pip install --upgrade --no-cache-dir pip setuptools wheel && \
-    pip install --upgrade --no-cache-dir \
-    ipywidgets \
-    jupyterlab \
-    notebook \
-    matplotlib==3.7.5 \
-    tikzplotlib==0.10.1 \
-    numpy \
-    pandas \
-    scipy \
-    scikit-image \
-    scikit-learn \
-    seaborn \
-    tabulate \
-    tqdm \
-    librosa \
-    arch \
-    sympy
+    pip install --no-cache-dir -r /tmp/requirements.txt
 
 ARG MY_USER
 ARG MY_UID

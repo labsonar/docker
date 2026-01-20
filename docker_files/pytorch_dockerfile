@@ -1,0 +1,12 @@
+FROM labsonar/processing
+
+USER root
+
+COPY requirements/torch.txt /tmp/torch.txt
+
+RUN pip install --no-cache-dir \
+    --extra-index-url https://download.pytorch.org/whl/cu118 \
+    -r /tmp/torch.txt
+
+ARG MY_USER
+USER ${MY_USER:-root}

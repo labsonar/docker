@@ -15,54 +15,54 @@ fi
 image=""
 case "$1" in
 	processing)
-		docker build --build-arg MY_USER=$USER --build-arg MY_UID=$(id -u) --build-arg MY_GID=$(id -g) -f processing_dockerfile -t "$dockerhub"processing .
+		docker build --build-arg MY_USER=$USER --build-arg MY_UID=$(id -u) --build-arg MY_GID=$(id -g) -f ./docker_files/processing_dockerfile -t "$dockerhub"processing .
 		image="processing"
 	;;
 
 	root_processing)
-		docker build -f processing_dockerfile -t "$dockerhub"root_processing .
+		docker build -f ./docker_files/processing_dockerfile -t "$dockerhub"root_processing .
 		image="root_processing"
 	;;
 
 	pytorch)
-		docker build --build-arg MY_USER=$USER --build-arg MY_UID=$(id -u) --build-arg MY_GID=$(id -g) -f processing_dockerfile -t "$dockerhub"processing .
-		docker build --build-arg MY_USER=$USER --build-arg MY_UID=$(id -u) --build-arg MY_GID=$(id -g) -f pytorch_dockerfile -t "$dockerhub"pytorch .
+		docker build --build-arg MY_USER=$USER --build-arg MY_UID=$(id -u) --build-arg MY_GID=$(id -g) -f ./docker_files/processing_dockerfile -t "$dockerhub"processing .
+		docker build --build-arg MY_USER=$USER --build-arg MY_UID=$(id -u) --build-arg MY_GID=$(id -g) -f ./docker_files/pytorch_dockerfile -t "$dockerhub"pytorch .
 		image="pytorch"
 	;;
 
 	root_pytorch)
-		docker build -f processing_dockerfile -t "$dockerhub"root_processing .
-		docker build -f pytorch_dockerfile -t "$dockerhub"root_pytorch .
+		docker build -f ./docker_files/processing_dockerfile -t "$dockerhub"root_processing .
+		docker build -f ./docker_files/pytorch_dockerfile -t "$dockerhub"root_pytorch .
 		image="root_pytorch"
 	;;
 
 	synthesis)
-		docker build --build-arg MY_USER=$USER --build-arg MY_UID=$(id -u) --build-arg MY_GID=$(id -g) -f processing_dockerfile -t "$dockerhub"processing .
-		docker build --build-arg MY_USER=$USER --build-arg MY_UID=$(id -u) --build-arg MY_GID=$(id -g) -f pytorch_dockerfile -t "$dockerhub"pytorch .
-		docker build --build-arg MY_USER=$USER --build-arg MY_UID=$(id -u) --build-arg MY_GID=$(id -g) -f synthesis_dockerfile -t "$dockerhub"synthesis .
+		docker build --build-arg MY_USER=$USER --build-arg MY_UID=$(id -u) --build-arg MY_GID=$(id -g) -f ./docker_files/processing_dockerfile -t "$dockerhub"processing .
+		docker build --build-arg MY_USER=$USER --build-arg MY_UID=$(id -u) --build-arg MY_GID=$(id -g) -f ./docker_files/pytorch_dockerfile -t "$dockerhub"pytorch .
+		docker build --build-arg MY_USER=$USER --build-arg MY_UID=$(id -u) --build-arg MY_GID=$(id -g) -f ./docker_files/synthesis_dockerfile -t "$dockerhub"synthesis .
 		image="synthesis"
 	;;
 
 	root_synthesis)
-		docker build -f processing_dockerfile -t "$dockerhub"root_processing .
-		docker build -f pytorch_dockerfile -t "$dockerhub"root_pytorch .
-		docker build -f synthesis_dockerfile -t "$dockerhub"root_synthesis .
+		docker build -f ./docker_files/processing_dockerfile -t "$dockerhub"root_processing .
+		docker build -f ./docker_files/pytorch_dockerfile -t "$dockerhub"root_pytorch .
+		docker build -f ./docker_files/synthesis_dockerfile -t "$dockerhub"root_synthesis .
 		image="root_synthesis"
 	;;
 
 	sonar)
-		docker build --build-arg MY_USER=$USER --build-arg MY_UID=$(id -u) --build-arg MY_GID=$(id -g) -f processing_dockerfile -t "$dockerhub"processing .
-		docker build --build-arg MY_USER=$USER --build-arg MY_UID=$(id -u) --build-arg MY_GID=$(id -g) -f pytorch_dockerfile -t "$dockerhub"pytorch .
-		docker build --build-arg MY_USER=$USER --build-arg MY_UID=$(id -u) --build-arg MY_GID=$(id -g) -f synthesis_dockerfile -t "$dockerhub"synthesis .
-		docker build --build-arg MY_USER=$USER --build-arg MY_UID=$(id -u) --build-arg MY_GID=$(id -g) -f sonar_dockerfile -t "$dockerhub"sonar .
+		docker build --build-arg MY_USER=$USER --build-arg MY_UID=$(id -u) --build-arg MY_GID=$(id -g) -f ./docker_files/processing_dockerfile -t "$dockerhub"processing .
+		docker build --build-arg MY_USER=$USER --build-arg MY_UID=$(id -u) --build-arg MY_GID=$(id -g) -f ./docker_files/pytorch_dockerfile -t "$dockerhub"pytorch .
+		docker build --build-arg MY_USER=$USER --build-arg MY_UID=$(id -u) --build-arg MY_GID=$(id -g) -f ./docker_files/synthesis_dockerfile -t "$dockerhub"synthesis .
+		docker build --build-arg MY_USER=$USER --build-arg MY_UID=$(id -u) --build-arg MY_GID=$(id -g) -f ./docker_files/sonar_dockerfile -t "$dockerhub"sonar .
 		image="sonar"
 	;;
 
 	root_sonar)
-		docker build -f processing_dockerfile -t "$dockerhub"root_processing .
-		docker build -f pytorch_dockerfile -t "$dockerhub"root_pytorch .
-		docker build -f synthesis_dockerfile -t "$dockerhub"root_synthesis .
-		docker build -f sonar_dockerfile -t "$dockerhub"root_sonar .
+		docker build -f ./docker_files/processing_dockerfile -t "$dockerhub"root_processing .
+		docker build -f ./docker_files/pytorch_dockerfile -t "$dockerhub"root_pytorch .
+		docker build -f ./docker_files/synthesis_dockerfile -t "$dockerhub"root_synthesis .
+		docker build -f ./docker_files/sonar_dockerfile -t "$dockerhub"root_sonar .
 		image="root_sonar"
 	;;
 
