@@ -23,7 +23,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     unzip \
     vim \
     wget \
-    zip
+    zip \
+    ffmpeg
 
 COPY requirements/base.txt /tmp/requirements.txt
 

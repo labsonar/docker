@@ -85,6 +85,6 @@ case "$1" in
 esac
 
 
-docker create -it --gpus all -v $HOME:$HOME -p "$port":"$port" "$dockerhub""$image"
+docker create -it --ipc=host --gpus all -v $HOME:$HOME -p "$port":"$port" "$dockerhub""$image"
 
 exit 0
